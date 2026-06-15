@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { loadCart, saveCart, loadWishlist, saveWishlist, loadView, saveView } from './storage';
 
 export function useEcommerce() {
-    const [cart, setCart] = useState([]);
-    const [wishlist, setWishlist] = useState([]);
+    const [cart, setCart] = useState(() => loadCart());
+    const [wishlist, setWishlist] = useState(() => loadWishlist());
     const [selectedRing, setSelectedRing] = useState(null);
     const [activeImage, setActiveImage] = useState(null);
-    const [currentView, setCurrentView] = useState('shop');
+    const [currentView, setCurrentView] = useState(() => loadView('shop'));
 
     const addToCart = (ring) => {
         const existingItem = cart.find(item => item.id === ring.id);
@@ -42,6 +43,18 @@ export function useEcommerce() {
         setActiveImage(ring.images[0]);
         setCurrentView('details');
     };
+
+    useEffect(() => {
+        saveCart(cart);
+    }, [cart]);
+
+    useEffect(() => {
+        saveWishlist(wishlist);
+    }, [wishlist]);
+
+    useEffect(() => {
+        saveView(currentView);
+    }, [currentView]);
 
     const totalItemsInCart = cart.reduce((total, item) => total + item.quantity, 0);
     const totalPriceInCart = cart.reduce((total, item) => total + (item.cost * item.quantity), 0);

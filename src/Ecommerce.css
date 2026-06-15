@@ -1,224 +1,333 @@
-body {
-  background-color: #2b0538;
-  color: white;
-  font-family: 'Segoe UI', Arial, sans-serif;
+/* ==========================================
+   1. RESETĂRI GLOBALE ȘI VARIABILE (LUXURY)
+   ========================================== */
+:root {
+  --bg-dark: #1b0222;
+  /* Movul tău superb închis */
+  --bg-card: #15011b;
+  /* Mov ușor mai închis pentru contrast pe carduri */
+  --accent-gold: #d4af37;
+  /* Un auriu discret, opțional pentru elemente premium */
+  --accent-red: #d32f2f;
+  /* Roșu mai puțin strident pentru butoane/prețuri */
+  --text-main: #ffffff;
+  --text-muted: #aaaaaa;
+  --font-family: 'Playfair Display', 'Segoe UI', serif;
+  /* Font elegant pentru bijuterii */
+}
+
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Containerul principal - acum ocupă spațiul corect fără padding excesiv lateral */
 .store-container {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 15px;
 }
 
-/* HEADER STYLING */
+@media (min-width: 768px) {
+  .store-container {
+    padding: 30px;
+  }
+}
+
+/* ==========================================
+   2. HEADER ȘI NAVIGARE
+   ========================================== */
 .store-header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  padding: 20px 0;
-  border-bottom: 1px solid #333;
+  gap: 15px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   margin-bottom: 30px;
 }
 
 .logo {
-  font-size: 1.6rem;
-  font-weight: bold;
+  font-size: 2rem;
+  font-weight: 700;
   letter-spacing: 1px;
+  transition: transform 0.2s;
+}
+
+.logo:hover {
+  transform: scale(1.02);
 }
 
 .header-status {
   display: flex;
-  gap: 20px;
+  gap: 15px;
+  width: 100%;
+  justify-content: center;
 }
 
+/* Butoanele de status din Header redesenate ca mici pastile finuțe */
 .status-item {
-  background-color: #1a1a1a;
-  padding: 10px 15px;
-  border-radius: 8px;
-  border: 1px solid #333;
-  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
 }
 
-/* GRILA DE CARDURI (STIL eMAG) */
+.status-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Repoziționare elegantă pe ecrane mari */
+@media (min-width: 768px) {
+  .store-header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .header-status {
+    width: auto;
+  }
+}
+
+/* Titlurile de secțiuni */
+h2 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+/* ==========================================
+   3. RESPONSIVE GRID (MOBILE-FIRST: 1, 2, apoi 3 pe rând)
+   ========================================== */
 .list-products.store {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: 1fr;
+  /* Implicit pe mobil: un singur card pe rând */
   gap: 25px;
-  margin-top: 20px;
 }
 
+/* Pe ecrane medii (Tablete, laptopuri mici) -> 2 pe rând */
+@media (min-width: 480px) {
+  .list-products.store {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Pe ecrane mari -> Exact cele 3 pe rând cerute de tine */
+@media (min-width: 992px) {
+  .list-products.store {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+}
+
+/* ==========================================
+   4. CARDURILE DE PRODUS (FINISATE)
+   ========================================== */
 .card-product {
-  background-color: #1a1a1a;
-  border: 1px solid #2d2d2d;
-  border-radius: 12px;
-  padding: 15px;
-  text-align: center;
   position: relative;
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-product:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-  border-color: #444;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Iconița de Wishlist de pe card */
-.card-wishlist-icon {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: rgba(0, 0, 0, 0.6);
-  border: none;
-  border-radius: 50%;
-  width: 35px;
-  height: 35px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-}
-
+/* Corecție tăiere imagine din card */
 .product-image {
   width: 100%;
-  height: 220px;
-  object-fit: cover;
+  height: 250px;
+  object-fit: contain;
+  /* Nu mai dă zoom agresiv, inelul se vede integral */
+  background: rgba(0, 0, 0, 0.15);
   border-radius: 8px;
   margin-bottom: 15px;
 }
 
 .card-product h3 {
-  font-size: 1.15rem;
-  margin: 10px 0 5px 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  height: 2.8rem;
+  /* Forțează titlurile lungi să ocupe maxim 2 rânduri egale */
+  overflow: hidden;
 }
 
 .short-desc {
-  color: #888;
+  color: var(--text-muted);
   font-size: 0.85rem;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  line-height: 1.5;
 }
 
 .price {
   font-size: 1.3rem;
-  font-weight: bold;
-  color: #e41e26;
+  font-weight: 700;
+  color: var(--text-main);
   margin-bottom: 15px;
 }
 
-/* BUTOANE CARD */
+/* Inimioara de pe card */
+.card-wishlist-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: background 0.2s;
+  z-index: 2;
+}
+
+.card-wishlist-icon:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Butoanele de pe card - mult mai subțiri și finuțe */
 .card-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
+  margin-top: auto;
+}
+
+.btn-view,
+.btn-card-buy,
+.btn-buy-now,
+.btn-wishlist-detail {
+  font-family: var(--font-family);
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
 }
 
 .btn-view {
-  background-color: #333;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .btn-view:hover {
-  background-color: #444;
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .btn-card-buy {
-  background-color: #e41e26;
+  background-color: var(--accent-red);
   color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
 }
 
 .btn-card-buy:hover {
-  background-color: #b81419;
+  background-color: #b71c1c;
 }
 
-/* --------------------------------------------------- */
-/* PAGINA DE DETALII */
-/* Containerul care împinge butonul la marginea din dreapta */
-.back-button-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 30px;
-  /* Lasă spațiu generos față de butoanele de cumpărare */
-}
-
-/* Stilul nou pentru un buton finuț, modern și minimalist */
-.btn-back {
-  background: none;
-  border: none;
-  color: #888;
-  /* O culoare gri, discretă, să nu sară în ochi ca butoanele principale */
-  font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;
-  padding: 8px 0;
-  transition: color 0.2s, transform 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-/* Efect discret când pui mouse-ul pe el: se face alb și se mișcă puțin la stânga */
-.btn-back:hover {
-  color: #ffffff;
-  transform: translateX(-3px);
-}
-
+/* ==========================================
+   5. PAGINA DETALII PRODUS (REPARATĂ)
+   ========================================== */
 .details-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  align-items: start;
 }
 
+@media (min-width: 768px) {
+  .details-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+  }
+}
+
+/* Imaginea principală fixată să arate tot inelul */
 .detail-img-large {
   width: 100%;
-  height: 400px;
-  object-fit: cover;
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
+  /* Soluția salvatoare: inelul nu mai este tăiat deloc */
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 12px;
+  margin-bottom: 15px;
 }
 
 .detail-thumbnails {
   display: flex;
   gap: 10px;
-  margin-top: 10px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .detail-img-small {
-  width: calc(50% - 5px);
-  height: 110px;
+  width: 60px;
+  height: 60px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
 }
 
+.active-thumb,
+.detail-img-small:hover {
+  border-color: var(--accent-red);
+}
+
+/* Textul din detalii */
 .details-info h2 {
+  text-align: left;
   font-size: 2rem;
-  margin-top: 0;
+  margin-bottom: 15px;
 }
 
 .details-long-description {
-  color: #ccc;
+  color: var(--text-muted);
   line-height: 1.6;
-  margin: 20px 0;
+  font-size: 0.95rem;
+  margin-bottom: 25px;
 }
 
 .detail-price {
   font-size: 1.8rem;
-  color: #e41e26;
-  font-weight: bold;
+  font-weight: 700;
+  color: var(--text-main);
   display: block;
   margin-bottom: 25px;
 }
@@ -226,31 +335,67 @@ body {
 .details-actions {
   display: flex;
   gap: 15px;
+  margin-bottom: 30px;
 }
 
 .btn-buy-now {
-  flex: 2;
-  background-color: #e41e26;
+  background-color: var(--accent-red);
   color: white;
-  border: none;
-  padding: 15px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
+  padding: 12px 24px;
+  font-size: 1rem;
+}
+
+.btn-buy-now:hover {
+  background-color: #b71c1c;
 }
 
 .btn-wishlist-detail {
-  flex: 1;
-  background-color: #222;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
-  border: 1px solid #444;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
+  padding: 12px 24px;
 }
 
-/* STILURI COȘ ÎMBUNĂTĂȚIT (TIP LISTĂ) */
+.btn-wishlist-detail:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Butonul înapoi repozitionat jos dreapta */
+.back-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-back:hover {
+  color: white;
+  transform: translateX(-3px);
+}
+
+/* ==========================================
+   6. PAGINA DE COȘ ȘI WISHLIST (STIL COMPACT LISTĂ)
+   ========================================== */
+.cart-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+@media (min-width: 992px) {
+  .cart-container {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
 .cart-items-list,
 .wishlist-items-list {
   display: flex;
@@ -260,134 +405,116 @@ body {
 
 .cart-item-row,
 .wishlist-item-row {
-  display: grid;
-  grid-template-columns: auto 2fr 1fr 1.2fr auto;
-  /* Aliniere tabelară perfectă */
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  background-color: #1a1a1a;
-  border: 1px solid #2d2d2d;
-  padding: 12px 20px;
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 15px;
   border-radius: 10px;
-  gap: 20px;
+  gap: 15px;
 }
 
-/* Pozele miniatură din liste - mici și compacte! */
 .cart-row-img,
 .wishlist-row-img {
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
   object-fit: cover;
   border-radius: 6px;
-  border: 1px solid #333;
+}
+
+.cart-row-info,
+.wishlist-row-info {
+  flex: 1;
+  min-width: 150px;
 }
 
 .cart-row-info h4,
 .wishlist-row-info h4 {
-  margin: 0 0 5px 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  margin-bottom: 4px;
 }
 
 .cart-row-info p {
-  margin: 0;
-  color: #777;
-  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
 }
 
-/* CONTROALE CANTITATE (+ / -) */
 .cart-row-quantity {
   display: flex;
   align-items: center;
-  gap: 12px;
-  background-color: #222;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.2);
   padding: 5px 10px;
   border-radius: 6px;
-  border: 1px solid #333;
-  width: fit-content;
 }
 
 .btn-qty {
   background: none;
   border: none;
   color: white;
-  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  padding: 0 5px;
 }
 
-.btn-qty:hover {
-  color: #e41e26;
-}
-
-.qty-number {
-  font-weight: bold;
-  font-size: 1rem;
-  min-width: 15px;
-  text-align: center;
-}
-
-/* PREȚUL DIN COȘ */
 .cart-row-price {
-  font-weight: bold;
-  font-size: 1.2rem;
-  color: white;
-  display: flex;
-  flex-direction: column;
-}
-
-.price-per-unit {
-  font-size: 0.75rem;
-  color: #777;
-  font-weight: normal;
-  margin-top: 2px;
+  font-weight: 600;
+  min-width: 80px;
+  text-align: right;
 }
 
 .btn-row-remove {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1rem;
-  transition: transform 0.2s;
 }
 
-.btn-row-remove:hover {
-  transform: scale(1.2);
+/* Rezumat Comandă */
+.cart-summary {
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 10px;
+  height: fit-content;
 }
 
-/* SUMAR COMANDĂ */
+.cart-summary h3 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
 .summary-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 12px;
-  font-size: 0.95rem;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
 }
 
 .summary-row.total {
-  border-top: 1px solid #333;
-  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 10px;
   margin-top: 15px;
+  font-size: 1.1rem;
 }
 
-/* STIL WISHLIST COMPACT */
-.wishlist-item-row {
-  grid-template-columns: auto 3fr 2fr;
-  /* Structură simplificată */
+.btn-checkout {
+  width: 100%;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  margin-top: 15px;
+  cursor: pointer;
 }
 
-.wishlist-row-price {
-  color: #e41e26;
-  font-weight: bold;
-}
-
-.wishlist-row-actions {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: flex-end;
+.btn-checkout:hover {
+  background-color: #1b5e20;
 }
 
 .empty-msg {
-  color: #666;
-  font-style: italic;
-  margin: 30px 0;
+  text-align: center;
+  color: var(--text-muted);
+  padding: 40px 0;
 }

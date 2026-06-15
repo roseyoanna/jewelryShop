@@ -1,5 +1,0 @@
-import { useState } from 'react';
-import './Ecommerce.css';
-
-
-export default Ecommerce;
