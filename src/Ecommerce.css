@@ -1,0 +1,393 @@
+body {
+  background-color: #2b0538;
+  color: white;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+}
+
+.store-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* HEADER STYLING */
+.store-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #333;
+  margin-bottom: 30px;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.header-status {
+  display: flex;
+  gap: 20px;
+}
+
+.status-item {
+  background-color: #1a1a1a;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  font-size: 0.95rem;
+}
+
+/* GRILA DE CARDURI (STIL eMAG) */
+.list-products.store {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.card-product {
+  background-color: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  border-color: #444;
+}
+
+/* Iconița de Wishlist de pe card */
+.card-wishlist-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.product-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.card-product h3 {
+  font-size: 1.15rem;
+  margin: 10px 0 5px 0;
+}
+
+.short-desc {
+  color: #888;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #e41e26;
+  margin-bottom: 15px;
+}
+
+/* BUTOANE CARD */
+.card-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.btn-view {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-view:hover {
+  background-color: #444;
+}
+
+.btn-card-buy {
+  background-color: #e41e26;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-card-buy:hover {
+  background-color: #b81419;
+}
+
+/* --------------------------------------------------- */
+/* PAGINA DE DETALII */
+/* Containerul care împinge butonul la marginea din dreapta */
+.back-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+  /* Lasă spațiu generos față de butoanele de cumpărare */
+}
+
+/* Stilul nou pentru un buton finuț, modern și minimalist */
+.btn-back {
+  background: none;
+  border: none;
+  color: #888;
+  /* O culoare gri, discretă, să nu sară în ochi ca butoanele principale */
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 0;
+  transition: color 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Efect discret când pui mouse-ul pe el: se face alb și se mișcă puțin la stânga */
+.btn-back:hover {
+  color: #ffffff;
+  transform: translateX(-3px);
+}
+
+.details-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.detail-img-large {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.detail-thumbnails {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.detail-img-small {
+  width: calc(50% - 5px);
+  height: 110px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.details-info h2 {
+  font-size: 2rem;
+  margin-top: 0;
+}
+
+.details-long-description {
+  color: #ccc;
+  line-height: 1.6;
+  margin: 20px 0;
+}
+
+.detail-price {
+  font-size: 1.8rem;
+  color: #e41e26;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 25px;
+}
+
+.details-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-buy-now {
+  flex: 2;
+  background-color: #e41e26;
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-wishlist-detail {
+  flex: 1;
+  background-color: #222;
+  color: white;
+  border: 1px solid #444;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* STILURI COȘ ÎMBUNĂTĂȚIT (TIP LISTĂ) */
+.cart-items-list,
+.wishlist-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cart-item-row,
+.wishlist-item-row {
+  display: grid;
+  grid-template-columns: auto 2fr 1fr 1.2fr auto;
+  /* Aliniere tabelară perfectă */
+  align-items: center;
+  background-color: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  padding: 12px 20px;
+  border-radius: 10px;
+  gap: 20px;
+}
+
+/* Pozele miniatură din liste - mici și compacte! */
+.cart-row-img,
+.wishlist-row-img {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #333;
+}
+
+.cart-row-info h4,
+.wishlist-row-info h4 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+}
+
+.cart-row-info p {
+  margin: 0;
+  color: #777;
+  font-size: 0.85rem;
+}
+
+/* CONTROALE CANTITATE (+ / -) */
+.cart-row-quantity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #222;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  width: fit-content;
+}
+
+.btn-qty {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.btn-qty:hover {
+  color: #e41e26;
+}
+
+.qty-number {
+  font-weight: bold;
+  font-size: 1rem;
+  min-width: 15px;
+  text-align: center;
+}
+
+/* PREȚUL DIN COȘ */
+.cart-row-price {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.price-per-unit {
+  font-size: 0.75rem;
+  color: #777;
+  font-weight: normal;
+  margin-top: 2px;
+}
+
+.btn-row-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s;
+}
+
+.btn-row-remove:hover {
+  transform: scale(1.2);
+}
+
+/* SUMAR COMANDĂ */
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+.summary-row.total {
+  border-top: 1px solid #333;
+  padding-top: 12px;
+  margin-top: 15px;
+}
+
+/* STIL WISHLIST COMPACT */
+.wishlist-item-row {
+  grid-template-columns: auto 3fr 2fr;
+  /* Structură simplificată */
+}
+
+.wishlist-row-price {
+  color: #e41e26;
+  font-weight: bold;
+}
+
+.wishlist-row-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.empty-msg {
+  color: #666;
+  font-style: italic;
+  margin: 30px 0;
+}
