@@ -1,2 +1,26 @@
-#My jewelry in one place. A project built using React and Vite#
-*Using local storage*
+# 💍 Luxury Jewelry For You 
+# A modern and elegant E-Commerce web app with my personal items
+
+##  💫 Usefull links
+* **Live Project** []
+* **Repository GitHub**[]
+
+## 🗝️ Key Feautures 
+* **Smart Search System**
+* **Shopping Cart**
+* **Whislist**
+* **Detailed Product Page**
+* **Responsive Interface**
+
+## 🛠️ Technologies Used
+* **React.js**- JavaScript library
+* **Vite**- Next-generation frontend tooling
+* **React Hooks**- Global application state management
+* **Vanilla CSS**– Custom styling based on CSS variables
+* **JavaScript (ES6+)**– Data filtering and array methods
+
+## 📦 Project Structure
+* `Ecommerce.jsx` — The main component that renders the pages (Shop, Collection, Cart, Wishlist, About).
+* `useEcommerce.js` — Custom Hook that isolates all the business logic (cart/wishlist states and price calculations).
+* `dataRings.js` — Centralized data source containing details, prices, and image paths for the rings.
+* `Ecommerce.css` — Global styles and media queries for responsive design.

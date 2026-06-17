@@ -1,11 +1,26 @@
 import { useState, useEffect } from 'react';
-import { loadCart, saveCart, loadWishlist, saveWishlist, loadView, saveView } from './storage';
+import { RINGS_DATA } from './dataRings';
+import {
+    loadCart,
+    saveCart,
+    loadWishlist,
+    saveWishlist,
+    loadView,
+    saveView,
+    loadSelectedId,
+    saveSelectedId,
+    loadActiveImage,
+    saveActiveImage
+} from './storage';
 
 export function useEcommerce() {
     const [cart, setCart] = useState(() => loadCart());
     const [wishlist, setWishlist] = useState(() => loadWishlist());
-    const [selectedRing, setSelectedRing] = useState(null);
-    const [activeImage, setActiveImage] = useState(null);
+    const [selectedRing, setSelectedRing] = useState(() => {
+        const selId = loadSelectedId();
+        return selId != null ? RINGS_DATA.find(r => r.id === selId) : null;
+    });
+    const [activeImage, setActiveImage] = useState(() => loadActiveImage() || null);
     const [currentView, setCurrentView] = useState(() => loadView('shop'));
 
     const addToCart = (ring) => {
@@ -29,7 +44,6 @@ export function useEcommerce() {
             setCart(cart.filter(item => item.id !== ringId));
         }
     };
-
     const toggleWishlist = (ring) => {
         if (wishlist.some(item => item.id === ring.id)) {
             setWishlist(wishlist.filter(item => item.id !== ring.id));
@@ -43,6 +57,19 @@ export function useEcommerce() {
         setActiveImage(ring.images[0]);
         setCurrentView('details');
     };
+
+    // Persist selected item id when it changes so refresh can restore details view
+    useEffect(() => {
+        saveSelectedId(selectedRing ? selectedRing.id : null);
+        // if selected changed and no active image, set default
+        if (selectedRing && !activeImage) {
+            setActiveImage(selectedRing.images[0]);
+        }
+    }, [selectedRing]);
+
+    useEffect(() => {
+        saveActiveImage(activeImage);
+    }, [activeImage]);
 
     useEffect(() => {
         saveCart(cart);

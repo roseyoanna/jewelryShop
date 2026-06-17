@@ -1,6 +1,8 @@
 const CART_KEY = 'ecommerce_cart';
 const WISHLIST_KEY = 'ecommerce_wishlist';
 const VIEW_KEY = 'ecommerce_view';
+const SELECTED_KEY = 'ecommerce_selected';
+const ACTIVE_IMAGE_KEY = 'ecommerce_active_image';
 
 const safeJSONParse = (value, fallback) => {
   try {
@@ -56,5 +58,33 @@ export const saveView = (view) => {
     localStorage.setItem(VIEW_KEY, JSON.stringify(view));
   } catch (error) {
     console.warn('storage saveView failed', error);
+  }
+};
+
+export const loadSelectedId = () => {
+  if (typeof window === 'undefined') return null;
+  return safeJSONParse(localStorage.getItem(SELECTED_KEY), null);
+};
+
+export const saveSelectedId = (id) => {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(SELECTED_KEY, JSON.stringify(id));
+  } catch (error) {
+    console.warn('storage saveSelectedId failed', error);
+  }
+};
+
+export const loadActiveImage = () => {
+  if (typeof window === 'undefined') return null;
+  return safeJSONParse(localStorage.getItem(ACTIVE_IMAGE_KEY), null);
+};
+
+export const saveActiveImage = (imgUrl) => {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(ACTIVE_IMAGE_KEY, JSON.stringify(imgUrl));
+  } catch (error) {
+    console.warn('storage saveActiveImage failed', error);
   }
 };
