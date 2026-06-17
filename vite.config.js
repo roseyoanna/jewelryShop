@@ -8,7 +8,8 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(), // 👈 Am activat pluginul Tailwind în listă
+    
   ],
-  
+  base: '/jewelryShop/'
  
 })
