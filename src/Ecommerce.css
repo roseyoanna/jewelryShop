@@ -68,6 +68,7 @@ body {
     padding-top: 24px;
     padding-bottom: 15px;
   }
+
   .logo {
     font-size: 1.8rem;
     letter-spacing: 1.5px;
@@ -79,6 +80,7 @@ body {
     padding-top: 30px;
     padding-bottom: 15px;
   }
+
   .logo {
     font-size: 2.3rem;
     letter-spacing: 2px;
@@ -128,10 +130,12 @@ body {
     margin-bottom: 35px;
     gap: 20px;
   }
+
   .nav-menu-left {
     gap: 25px;
     flex-wrap: nowrap;
   }
+
   .nav-link {
     font-size: 1.05rem;
   }
@@ -326,21 +330,25 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
-.collection-intro{
-  display:flex;
+
+.collection-intro {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom:20px;
-  padding-bottom:20px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
-.collection-intro p{
-text-align: right;
-margin-right:45px;
+
+.collection-intro p {
+  text-align: right;
+  margin-right: 45px;
 }
+
 .collection-intro h2 {
   text-align: left;
   margin-left: 45px;
 }
+
 .product-details-page {
   background: var(--mov-card-img);
   padding: 40px;

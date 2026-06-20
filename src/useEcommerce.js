@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { RINGS_DATA } from './dataRings';
+import { BRACELETS_DATA } from './dataBracelets';
+import { EARRINGS_DATA } from './dataEarrings';
 import {
     loadCart,
     saveCart,
@@ -13,12 +15,14 @@ import {
     saveActiveImage
 } from './storage';
 
+const ALL_PRODUCTS = [...RINGS_DATA, ...BRACELETS_DATA, ...EARRINGS_DATA];
+
 export function useEcommerce() {
     const [cart, setCart] = useState(() => loadCart());
     const [wishlist, setWishlist] = useState(() => loadWishlist());
-    const [selectedRing, setSelectedRing] = useState(() => {
+    const [selectedProduct, setSelectedProduct] = useState(() => {
         const selId = loadSelectedId();
-        return selId != null ? RINGS_DATA.find(r => r.id === selId) : null;
+        return selId != null ? ALL_PRODUCTS.find(p => p.id === selId) : null;
     });
     const [activeImage, setActiveImage] = useState(() => loadActiveImage() || null);
     const [currentView, setCurrentView] = useState(() => loadView('shop'));
@@ -53,20 +57,15 @@ export function useEcommerce() {
     };
 
     const openDetails = (ring) => {
-        setSelectedRing(ring);
+        setSelectedProduct(ring);
         setActiveImage(ring.images[0]);
         setCurrentView('details');
     };
 
-    // Persist selected item id when it changes so refresh can restore details view
     useEffect(() => {
-        saveSelectedId(selectedRing ? selectedRing.id : null);
-        // if selected changed and no active image, set default
-        if (selectedRing && !activeImage) {
-            setActiveImage(selectedRing.images[0]);
-        }
-    }, [selectedRing]);
-
+        saveSelectedId(selectedProduct ? selectedProduct.id : null);
+    }, [selectedProduct]);
+    
     useEffect(() => {
         saveActiveImage(activeImage);
     }, [activeImage]);
@@ -89,7 +88,7 @@ export function useEcommerce() {
     return {
         cart, setCart,
         wishlist,
-        selectedRing,
+        selectedProduct,
         activeImage, setActiveImage,
         currentView, setCurrentView,
         addToCart,

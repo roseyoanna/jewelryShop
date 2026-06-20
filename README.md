@@ -11,6 +11,7 @@
 * **Whislist**
 * **Detailed Product Page**
 * **Responsive Interface**
+* **Popup**
 
 ## 🛠️ Technologies Used
 * **React.js**- JavaScript library
@@ -22,5 +23,5 @@
 ## 📦 Project Structure
 * `Ecommerce.jsx` — The main component that renders the pages (Shop, Collection, Cart, Wishlist, About).
 * `useEcommerce.js` — Custom Hook that isolates all the business logic (cart/wishlist states and price calculations).
-* `dataRings.js` — Centralized data source containing details, prices, and image paths for the rings.
+* `dataRings.js, dataBracelets.js, dataEarrings` — Centralized data source containing details, prices, and image paths for the products.
 * `Ecommerce.css` — Global styles and media queries for responsive design.

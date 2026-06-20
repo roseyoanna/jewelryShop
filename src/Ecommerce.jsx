@@ -1,31 +1,75 @@
 import { useEcommerce } from './useEcommerce';
 import { RINGS_DATA } from './dataRings';
+import { BRACELETS_DATA } from './dataBracelets';
+import { EARRINGS_DATA } from './dataEarrings';
 import { useState } from 'react';
 import './Ecommerce.css';
 import bottleImg from './assets/17.jpeg';
 
+const ALL_PRODUCTS = [...RINGS_DATA, ...BRACELETS_DATA, ...EARRINGS_DATA];
+
+
+
+
 function Ecommerce() {
   const {
-    cart, setCart, wishlist, selectedRing, activeImage, setActiveImage,
+    cart, setCart, wishlist, selectedProduct, activeImage, setActiveImage,
     currentView, setCurrentView, addToCart, decreaseQuantity, toggleWishlist,
     openDetails, totalItemsInCart, totalPriceInCart
   } = useEcommerce();
 
   const [searchQuery, setSearchQuery] = useState('');
-  const collectionRings = RINGS_DATA.slice(0, 6);
-  const filteredRings = RINGS_DATA.filter(ring =>
-    ring.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    (ring.shortDescription || '').toLowerCase().includes(searchQuery.toLowerCase())
+
+  const filteredProducts = ALL_PRODUCTS.filter(product =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    (product.shortDescription || '').toLowerCase().includes(searchQuery.toLowerCase())
   );
+  const filteredRings = filteredProducts.filter(p => RINGS_DATA.some(r => r.id === p.id));
+  const filteredBracelets = filteredProducts.filter(p => BRACELETS_DATA.some(b => b.id === p.id));
+  const filteredEarrings = filteredProducts.filter(p => EARRINGS_DATA.some(e => e.id === p.id));
+
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     if (e.target.value !== '' && currentView !== 'shop' && currentView !== 'collection') {
       setCurrentView('shop');
     }
   };
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMesg, setPopupMesg] = useState('');
+  const handleAddToCartPopup = (product) => {
+    addToCart(product);
+    setPopupMesg(`"${product.name}" added to cart! 🛒`);
+    setShowPopup(true);
 
+    setTimeout(() => {
+      setShowPopup(false);
+
+    }, 2500);
+  };
+
+  const renderProductCard = (product) => {
+    const isInWishlist = wishlist.some(item => item.id === product.id);
+    return (
+      <div key={product.id} className="card-product">
+        <button className="card-wishlist-icon" onClick={() => toggleWishlist(product)}>
+          {isInWishlist ? '❤️' : '🖤'}
+        </button>
+        <img src={product.images[0]} alt={product.name} className="product-image" />
+        <h3>{product.name}</h3>
+        <p className="short-desc">{product.shortDescription}</p>
+        <span className="price">{product.cost} RON</span>
+        <div className="card-buttons">
+          <button className="btn-view" onClick={() => openDetails(product)}>View Product 👁️</button>
+          <button className="btn-card-buy" onClick={() => handleAddToCartPopup(product)}>Buy 🛒</button>
+        </div>
+      </div>
+    );
+  };
   return (
     <div className="store-container">
+      {showPopup && (<div className="cart-toast-popup">
+        <span className="toast-icon">✨</span> {popupMesg}
+      </div>)}
 
       <header className="store-header">
         <div className="logo" onClick={() => { setSearchQuery(''); setCurrentView('shop'); }}>
@@ -35,8 +79,9 @@ function Ecommerce() {
 
       <div className="store-header-row">
         <nav className="nav-menu-left">
-          <span className={`nav-link ${currentView === 'shop' ? 'active' : ''}`} onClick={() => setCurrentView('shop')}>Home</span>
-          <span className={`nav-link ${currentView === 'collection' ? 'active' : ''}`} onClick={() => setCurrentView('collection')}>Jewelry Collection</span>
+          <span className={`nav-link ${currentView === 'shop' ? 'active' : ''}`} onClick={() => setCurrentView('shop')}>Rings</span>
+          <span className={`nav-link ${currentView === 'bracelets' ? 'active' : ''}`} onClick={() => setCurrentView('bracelets')}>Bracelets</span>
+          <span className={`nav-link ${currentView === 'earrings' ? 'active' : ''}`} onClick={() => setCurrentView('earrings')}>Earrings</span>
           <span className={`nav-link ${currentView === 'about' ? 'active' : ''}`} onClick={() => setCurrentView('about')}>About</span>
         </nav>
 
@@ -50,6 +95,7 @@ function Ecommerce() {
           />
         </div>
 
+
         <div className="header-actions">
           <button className="status-item-btn" onClick={() => setCurrentView('wishlist')} title="Wishlist">
             <span className="icon">❤️</span>
@@ -62,16 +108,31 @@ function Ecommerce() {
         </div>
       </div>
 
-      {currentView === 'details' && selectedRing && (
+      {currentView === 'details' && selectedProduct && (
         <div className="product-details-page">
+          <button calssName="btn-back-to-shop" onClick={() => {
+            if (RINGS_DATA.some(r => r.id === selectedProduct.id)) {
+              setCurrentView('shop');
+            } else if (BRACELETS_DATA.some(b => b.id === selectedProduct.id)) {
+              setCurrentView('bracelets');
+            } else if (EARRINGS_DATA.some(e => e.id === selectedProduct.id)) {
+              setCurrentView('earrings');
+            } else {
+              setCurrentView('shop');
+
+            }
+          }}
+          >
+            🔙
+          </button>
           <div className="details-content-layout">
 
             <div className="details-left-side">
               <div className="large-image-wrapper">
-                <img src={activeImage} alt={selectedRing.name} className="detail-img-large" />
+                <img src={activeImage} alt={selectedProduct.name} className="detail-img-large" />
               </div>
               <div className="detail-thumbnails">
-                {selectedRing.images.map((imgUrl, index) => (
+                {selectedProduct.images.map((imgUrl, index) => (
                   <img
                     key={index}
                     src={imgUrl}
@@ -84,16 +145,16 @@ function Ecommerce() {
             </div>
 
             <div className="details-right-side">
-              <h2>{selectedRing.name}</h2>
-              <p className="details-long-description">{selectedRing.longDescription}</p>
-              <span className="detail-price">{selectedRing.cost} RON</span>
+              <h2>{selectedProduct.name}</h2>
+              <p className="details-long-description">{selectedProduct.longDescription}</p>
+              <span className="detail-price">{selectedProduct.cost} RON</span>
 
               <div className="details-actions">
-                <button className="btn-buy-now" onClick={() => addToCart(selectedRing)}>
+                <button className="btn-buy-now" onClick={() => handleAddToCartPopup(selectedProduct)}>
                   Add to Cart 🛒
                 </button>
-                <button className="btn-wishlist-detail" onClick={() => toggleWishlist(selectedRing)}>
-                  {wishlist.some(item => item.id === selectedRing.id) ? "❤️ In Wishlist" : "💍 Add to Wishlist"}
+                <button className="btn-wishlist-detail" onClick={() => toggleWishlist(selectedProduct)}>
+                  {wishlist.some(item => item.id === selectedProduct.id) ? "❤️ In Wishlist" : "💍 Add to Wishlist"}
                 </button>
               </div>
             </div>
@@ -101,7 +162,7 @@ function Ecommerce() {
           </div>
         </div>
       )}
-      
+
       {currentView === 'cart' && (
         <div className="cart-page">
           <h2>Cart 🛒</h2>
@@ -122,7 +183,7 @@ function Ecommerce() {
                     <div className="cart-row-quantity">
                       <button className="btn-qty" onClick={() => decreaseQuantity(item.id)}>-</button>
                       <span className="qty-number">{item.quantity}</span>
-                      <button className="btn-qty" onClick={() => addToCart(item)}>+</button>
+                      <button className="btn-qty" onClick={() => handleAddToCartPopup(item)}>+</button>
                     </div>
 
                     <div className="cart-row-price">
@@ -153,23 +214,23 @@ function Ecommerce() {
             <p className="empty-msg">You haven't added any products to your favorites yet.</p>
           ) : (
             <div className="wishlist-items-list-wrapper">
-              {wishlist.map((ring) => (
-                <div key={ring.id} className="wishlist-item-horizontal-row">
-                  <img src={ring.images[0]} alt={ring.name} className="wishlist-row-img" />
+              {wishlist.map((product) => (
+                <div key={product.id} className="wishlist-item-horizontal-row">
+                  <img src={product.images[0]} alt={product.name} className="wishlist-row-img" />
 
                   <div className="wishlist-row-info">
-                    <h4>{ring.name}</h4>
-                    <p>{ring.shortDescription}</p>
+                    <h4>{product.name}</h4>
+                    <p>{product.shortDescription}</p>
                   </div>
 
                   <div className="wishlist-row-price">
-                    <strong>{ring.cost} RON</strong>
+                    <strong>{product.cost} RON</strong>
                   </div>
 
                   <div className="wishlist-row-actions">
-                    <button className="btn-card-buy" onClick={() => addToCart(ring)}>Buy 🛒</button>
-                    <button className="btn-view" onClick={() => openDetails(ring)}>View 👁️</button>
-                    <button className="btn-row-remove" onClick={() => toggleWishlist(ring)}>❌</button>
+                    <button className="btn-card-buy" onClick={() => handleAddToCartPopup(product)}>Buy 🛒</button>
+                    <button className="btn-view" onClick={() => openDetails(product)}>View 👁️</button>
+                    <button className="btn-row-remove" onClick={() => toggleWishlist(product)}>❌</button>
                   </div>
                 </div>
               ))}
@@ -178,62 +239,38 @@ function Ecommerce() {
         </div>
       )}
 
-      {/* PAGINA PRINCIPALĂ MAGAZIN (HOME) */}
+      {/* Pagina principala/Rings  */}
       {currentView === 'shop' && (
         <div className="main-shop-page">
           <div className="list-products store">
             {filteredRings.length === 0 ? (
-              <p className="empty-msg">No products found matching your search.</p>
+              <p className="empty-msg">No rings found matching your search.</p>
             ) : (
-              filteredRings.map((ring) => {
-                const isInWishlist = wishlist.some(item => item.id === ring.id);
-                return (
-                  <div key={ring.id} className="card-product">
-                    <button className="card-wishlist-icon" onClick={() => toggleWishlist(ring)}>
-                      {isInWishlist ? '❤️' : '🖤'}  {/*🤎💛🧡🩵*/}
-                    </button>
-                    <img src={ring.images[0]} alt={ring.name} className="product-image" />
-                    <h3>{ring.name}</h3>
-                    <p className="short-desc">{ring.shortDescription}</p>
-                    <span className="price">{ring.cost} RON</span>
-                    <div className="card-buttons">
-                      <button className="btn-view" onClick={() => openDetails(ring)}>View Product 👁️</button>
-                      <button className="btn-card-buy" onClick={() => addToCart(ring)}>Buy 🛒</button>
-                    </div>
-                  </div>
-                );
-              })
+              filteredRings.map(rings => renderProductCard(rings))
             )}
           </div>
         </div>
       )}
 
-      {/* PAGINA DEDICATĂ COLECȚIEI (6 PRODUSE) */}
-      {currentView === 'collection' && (
-        <div className="collection-page">
-          <div className="collection-intro">
-            <h2>The Signature Selection</h2>
-            <p>A handpicked preview of our 6 most extraordinary and breathtaking ring configurations.</p>
+      {currentView === 'bracelets' && (
+        <div className='main-shop-page'>
+          <div className='list-products store'>
+            {filteredBracelets.length === 0 ? (
+              <p className="empty-msg">No bracelets found matching yur search.</p>
+            ) : (
+              filteredBracelets.map(bracelets => renderProductCard(bracelets))
+            )}
           </div>
-          <div className="list-products store">
-            {collectionRings.map((ring) => {
-              const isInWishlist = wishlist.some(item => item.id === ring.id);
-              return (
-                <div key={ring.id} className="card-product">
-                  <button className="card-wishlist-icon" onClick={() => toggleWishlist(ring)}>
-                    {isInWishlist ? '❤️' : '🖤'}
-                  </button>
-                  <img src={ring.images[0]} alt={ring.name} className="product-image" />
-                  <h3>{ring.name}</h3>
-                  <p className="short-desc">{ring.shortDescription}</p>
-                  <span className="price">{ring.cost} RON</span>
-                  <div className="card-buttons">
-                    <button className="btn-view" onClick={() => openDetails(ring)}>View Product 👁️</button>
-                    <button className="btn-card-buy" onClick={() => addToCart(ring)}>Buy 🛒</button>
-                  </div>
-                </div>
-              );
-            })}
+        </div>
+      )}
+      {currentView === 'earrings' && (
+        <div className='main-shop-page'>
+          <div className='list-products store'>
+            {filteredEarrings.length === 0 ? (
+              <p className="empty-msg">No earrings found matching yur search</p>
+            ) : (
+              filteredEarrings.map(earrings => renderProductCard(earrings))
+            )}
           </div>
         </div>
       )}
@@ -244,12 +281,16 @@ function Ecommerce() {
           <div className="about-section flex-row">
             <div className="about-text">
               <h2>About My Personal Collection</h2>
-              <p>Welcome to my absolute sanctuary of curation. This space represents a lifetime love affair with silver engineering, timeless geometry, and complex mineralogy.</p>
-              <p>Among these rigid metallic forms, you might have also stumbled upon a peculiar bottle with a text resting quietly inside it. Consider it an intentionally misplaced poetic relic—a metaphorical message cast into an ocean of structured design.</p>
+              <p>Welcome to my absolute sanctuary of curation.
+                This space represents a lifetime love affair with silver engineering, timeless geometry, and complex mineralogy.
+                Among these rigid metallic forms, you might have also stumbled upon a peculiar bottle with a text resting quietly inside it.
+                Consider it an intentionally misplaced poetic relic—a metaphorical message cast into an ocean of structured design.</p>
               <h3>About Our Jewelry</h3>
-              <p>Each piece is thoughtfully crafted to balance artistry and wearability. We combine traditional techniques with contemporary design to create jewelry that tells a story and stands the test of time. Whether you seek subtle elegance or a bold statement, our collection celebrates individuality and enduring craftsmanship.</p>
-              <p>We source materials responsibly whenever possible, favoring recycled metals and ethically mined stones. Our makers pay attention to every detail — finishes are hand-polished and settings are double-checked for longevity.</p>
-              <p>Browse slowly and let each design speak to you; if you have custom ideas or requests, reach out and we'll collaborate to bring a unique piece into being.</p>
+              <p>Each piece is thoughtfully crafted to balance artistry and wearability.
+                We combine traditional techniques with contemporary design to create jewelry that tells a story and stands the test of time.
+                Whether you seek subtle elegance or a bold statement, our collection celebrates individuality and enduring craftsmanship.
+                We source materials responsibly whenever possible, favoring recycled metals and ethically mined stones. Our makers pay attention to every detail — finishes are hand-polished and settings are double-checked for longevity.
+                Browse slowly and let each design speak to you; if you have custom ideas or requests, reach out and we'll collaborate to bring a unique piece into being.</p>
             </div>
             <div className="about-image-wrapper">
               <img src={bottleImg} alt="Poetic Relic Bottle" className="about-side-img" />
