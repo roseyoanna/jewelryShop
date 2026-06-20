@@ -2,8 +2,9 @@
 # A modern and elegant E-Commerce web app with my personal items
 
 ##  💫 Usefull links
-* **Live Project** []
-* **Repository GitHub**[]
+* **Deploy On GitHub Pages** [myproject-com](https://roseyoanna.github.io/jewelryShop/)
+* **Repository GitHub**[jewelryShop](https://github.com/roseyoanna/jewelryShop.git)
+* **Deploy On Vercel**[jewelryShop/myproject-com](https://jewelry-shop-fawn.vercel.app/)
 
 ## 🗝️ Key Feautures 
 * **Smart Search System**
