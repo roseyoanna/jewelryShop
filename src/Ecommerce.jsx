@@ -38,13 +38,13 @@ function Ecommerce() {
   const [popupMesg, setPopupMesg] = useState('');
   const handleAddToCartPopup = (product) => {
     addToCart(product);
-    setPopupMesg(`"${product.name}" added to cart! 🛒`);
+    setPopupMesg(`🛒Added to cart!`);
     setShowPopup(true);
 
     setTimeout(() => {
       setShowPopup(false);
 
-    }, 2500);
+    }, 1500);
   };
 
   const renderProductCard = (product) => {
@@ -67,8 +67,8 @@ function Ecommerce() {
   };
   return (
     <div className="store-container">
-      {showPopup && (<div className="cart-toast-popup">
-        <span className="toast-icon">✨</span> {popupMesg}
+      {showPopup && (<div className="cart-popup">
+        <span className="popup-icon">✨</span> {popupMesg}
       </div>)}
 
       <header className="store-header">
@@ -110,7 +110,7 @@ function Ecommerce() {
 
       {currentView === 'details' && selectedProduct && (
         <div className="product-details-page">
-          <button calssName="btn-back-to-shop" onClick={() => {
+          <button className="btn-back-to-shop" onClick={() => {
             if (RINGS_DATA.some(r => r.id === selectedProduct.id)) {
               setCurrentView('shop');
             } else if (BRACELETS_DATA.some(b => b.id === selectedProduct.id)) {
@@ -280,17 +280,21 @@ function Ecommerce() {
         <div className="about-page">
           <div className="about-section flex-row">
             <div className="about-text">
-              <h2>About My Personal Collection</h2>
+              <h2>My Personal Collection of Jewelry</h2>
+              <p>This collection is entirely private—personal, unicate jewels accumulated over years of searching.
+                It is my absolute sanctuary of beauty, where every artifact stands as a testament to time and personal character.
+                Within my personal jewelry box rests a private history.</p>
+              <p>These jewels are not merely kept in darkness; they are a living part of my daily life,
+                worn with deep affection and pride. Each piece has its own unique lineage—some were precious
+                gifts from unforgettable souls, while others were hard-won discoveries bought during my travels.
+                To wear them is to carry those moments with me, making this private collection a breathing archive
+                of my journey.</p>
               <p>Welcome to my absolute sanctuary of curation.
                 This space represents a lifetime love affair with silver engineering, timeless geometry, and complex mineralogy.
                 Among these rigid metallic forms, you might have also stumbled upon a peculiar bottle with a text resting quietly inside it.
                 Consider it an intentionally misplaced poetic relic—a metaphorical message cast into an ocean of structured design.</p>
-              <h3>About Our Jewelry</h3>
-              <p>Each piece is thoughtfully crafted to balance artistry and wearability.
-                We combine traditional techniques with contemporary design to create jewelry that tells a story and stands the test of time.
-                Whether you seek subtle elegance or a bold statement, our collection celebrates individuality and enduring craftsmanship.
-                We source materials responsibly whenever possible, favoring recycled metals and ethically mined stones. Our makers pay attention to every detail — finishes are hand-polished and settings are double-checked for longevity.
-                Browse slowly and let each design speak to you; if you have custom ideas or requests, reach out and we'll collaborate to bring a unique piece into being.</p>
+
+
             </div>
             <div className="about-image-wrapper">
               <img src={bottleImg} alt="Poetic Relic Bottle" className="about-side-img" />
