@@ -280,7 +280,7 @@ function Ecommerce() {
             <div className="about-section flex-row">
               <div className="about-text">
                 <h2>My Personal Collection of Jewelry</h2>
-                <p>This collection is entirely private—personal, unicate jewels accumulated over years of searching.
+                <p>This collection is entirely private—personal, unique jewels accumulated over years of searching.
                   It is my absolute sanctuary of beauty, where every artifact stands as a testament to time and personal character.
                   Within my personal jewelry box rests a private history.</p>
                 <p>These jewels are not merely kept in darkness, they are a living part of my daily life,

@@ -89,7 +89,8 @@ export const BRACELETS_DATA = [{
     longDescription: `Keep your precious collection organized and displayed with grace. 
     This sleek jewelry cabinet provides a perfect home for all your rings, earrings, and bracelets, 
     featuring organized compartments and an integrated mirror, ensuring every piece of your "Luxury Jewels For You" 
-    collection is ready to wear at a moment's notice.`,
+    collection is ready to wear at a moment's notice. This beautiful cabinet stands at 270 mm high and 210 mm wide, featuring a sleek, slimline 100 mm 
+    thickness that makes it a perfect elegant addition to any room without overcrowding your space.`,
     cost: 1450,
     images: [img31, img31b]
 
