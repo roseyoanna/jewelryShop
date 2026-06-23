@@ -18,6 +18,7 @@ import {
 const ALL_PRODUCTS = [...RINGS_DATA, ...BRACELETS_DATA, ...EARRINGS_DATA];
 
 export function useEcommerce() {
+
     const [cart, setCart] = useState(() => loadCart());
     const [wishlist, setWishlist] = useState(() => loadWishlist());
     const [selectedProduct, setSelectedProduct] = useState(() => {
@@ -25,47 +26,46 @@ export function useEcommerce() {
         return selId != null ? ALL_PRODUCTS.find(p => p.id === selId) : null;
     });
     const [activeImage, setActiveImage] = useState(() => loadActiveImage() || null);
-    const [currentView, setCurrentView] = useState(() => loadView('shop'));
-
-    const addToCart = (ring) => {
-        const existingItem = cart.find(item => item.id === ring.id);
+    const [currentView, setCurrentView] = useState(() => loadView('home'));
+    const addToCart = (product) => {
+        const existingItem = cart.find(item => item.id === product.id);
         if (existingItem) {
             setCart(cart.map(item =>
-                item.id === ring.id ? { ...item, quantity: item.quantity + 1 } : item
+                item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
             ));
         } else {
-            setCart([...cart, { ...ring, quantity: 1 }]);
+            setCart([...cart, { ...product, quantity: 1 }]);
         }
     };
 
-    const decreaseQuantity = (ringId) => {
-        const targetItem = cart.find(item => item.id === ringId);
+    const decreaseQuantity = (productId) => {
+        const targetItem = cart.find(item => item.id === productId);
         if (targetItem.quantity > 1) {
             setCart(cart.map(item =>
-                item.id === ringId ? { ...item, quantity: item.quantity - 1 } : item
+                item.id === productId ? { ...item, quantity: item.quantity - 1 } : item
             ));
         } else {
-            setCart(cart.filter(item => item.id !== ringId));
+            setCart(cart.filter(item => item.id !== productId));
         }
     };
-    const toggleWishlist = (ring) => {
-        if (wishlist.some(item => item.id === ring.id)) {
-            setWishlist(wishlist.filter(item => item.id !== ring.id));
+    const toggleWishlist = (product) => {
+        if (wishlist.some(item => item.id === product.id)) {
+            setWishlist(wishlist.filter(item => item.id !== product.id));
         } else {
-            setWishlist([...wishlist, ring]);
+            setWishlist([...wishlist, product]);
         }
     };
 
-    const openDetails = (ring) => {
-        setSelectedProduct(ring);
-        setActiveImage(ring.images[0]);
+    const openDetails = (product) => {
+        setSelectedProduct(product);
+        setActiveImage(product.images[0]);
         setCurrentView('details');
     };
 
     useEffect(() => {
         saveSelectedId(selectedProduct ? selectedProduct.id : null);
     }, [selectedProduct]);
-    
+
     useEffect(() => {
         saveActiveImage(activeImage);
     }, [activeImage]);

@@ -60,13 +60,11 @@ body {
   align-items: center;
   gap: 3px;
   z-index: 99999;
-
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   top: auto;
   animation: slideUpMobile 0.3s ease-out;
-
   animation: slideInDown 0.4s ease-out;
 }
 
@@ -78,6 +76,7 @@ body {
   .cart-popup {
     top: 30px;
     left: 90px;
+    position:fixed;
     bottom: auto;
     transform: none;
     font-size: 16px;
