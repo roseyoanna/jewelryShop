@@ -32,6 +32,7 @@ function Ecommerce() {
       setCurrentView('shop');
     }
   };
+  {/*popup function */}
   const [showPopup, setShowPopup] = useState(false);
   const [popupMesg, setPopupMesg] = useState('');
   const handleAddToCartPopup = (product) => {
@@ -68,13 +69,13 @@ function Ecommerce() {
       {currentView === 'home' && (<Home onViewChange={setCurrentView} />)}
       {showPopup && (
         <div className="cart-popup">
-          <span className="popup-icon"><em>💍Added to🛒 </em></span> {popupMesg}
+          <span className="popup-icon"><em> Added to🛒 </em></span> {popupMesg}
         </div>
       )}
       {currentView !== 'home' && (<>
         <header className="store-header">
-          <div className="logo" onClick={() => setCurrentView('home')}>
-            Luxury Jewels For You 💍
+          <div className="logo" onClick={() => setCurrentView('shop')}>
+            Luxury Jewels ⁂
           </div>
         </header>
         <div className="store-header-row">
@@ -88,7 +89,7 @@ function Ecommerce() {
           </nav>
 
           <div className="search-bar">
-            <span className="search-icon">🔍</span>
+            <span className="search-icon"></span>
             <input
               type="text"
               placeholder="Search jewels..."
@@ -239,7 +240,7 @@ function Ecommerce() {
           </div>
         )}
 
-        {/* Products Pages  */}
+        {/* Products Page  */}
         {currentView === 'shop' && (
           <div className="main-shop-page">
             <div className="list-products store">
@@ -274,7 +275,7 @@ function Ecommerce() {
             </div>
           </div>
         )}
-
+{/*About page*/}
         {currentView === 'about' && (
           <div className="about-page">
             <div className="about-section flex-row">
@@ -306,7 +307,7 @@ function Ecommerce() {
         <footer className="store-footer">
           <div className="footer-content">
             <div className="footer-brand">
-              <h3>Luxury Jewels For You 💍</h3>
+              <h3>Luxury Jewels ✨</h3>
               <p>Timeless personal collections and luxury artifacts.</p>
             </div>
             <div className="footer-contact">
@@ -315,7 +316,7 @@ function Ecommerce() {
             </div>
           </div>
           <div className="footer-bottom">
-            &copy; 2026 Luxury Jewels For You. All Rights Reserved.
+            &copy; 2026 Luxury Jewels. All Rights Reserved.
           </div>
         </footer>
       </>

@@ -153,107 +153,107 @@ export const RINGS_DATA = [
     images: [img6, img6b, img6c]
   },
   {
-id: 7,
-name: "Purple Haze",
-cost: 735,
-shortDescription: "Delicate silver ring with a purple color accent.",
-longDescription: `A dainty silver ring accented with a soft purple color detail for a subtle pop of
+    id: 7,
+    name: "Purple Haze",
+    cost: 735,
+    shortDescription: "Delicate silver ring with a purple color accent.",
+    longDescription: `A dainty silver ring accented with a soft purple color detail for a subtle pop of
 color and a delicate, feminine finish.`,
-images: [img7]
+    images: [img7]
   },
 
-{
-id: 8,
-name: "Laced White Silever",
-cost: 1510,
-shortDescription: "Vintage Silver Mesh Blooming Flower Statement Ring(3D Layered Floral Design)",
-longDescription: `Unleash your inner romantic with this breathtaking silver mesh flower statement ring.
+  {
+    id: 8,
+    name: "Laced White Silever",
+    cost: 1510,
+    shortDescription: "Vintage Silver Mesh Blooming Flower Statement Ring(3D Layered Floral Design)",
+    longDescription: `Unleash your inner romantic with this breathtaking silver mesh flower statement ring.
 Designed to capture the dramatic beauty of a blossom in mid-bloom, this oversized ring is
 beautifully constructed from layers of intricately woven diamond-patterned metallic mesh. The
 concentric tiers of flexible-look petals swirl elegantly toward the center, creating a stunning 3D
 architectural look that looks beautiful from every angle. Mounted on a polished silver-toned split
 band for maximum stability and comfort, this cocktail ring is the ultimate conversation starter for
 parties, special occasions, or a bold daytime look.`,
-images: [img8, img8b, img8c]
-},
+    images: [img8, img8b, img8c]
+  },
 
-{
-id: 9,
-name: "Cat Shape Ring",
-cost: 755,
-shortDescription: "Playful cat-shaped ring in polished silver.",
-longDescription: `A whimsical ring featuring a stylized cat silhouette crafted from polished 925 silver,
+  {
+    id: 9,
+    name: "Cat Shape Ring",
+    cost: 755,
+    shortDescription: "Playful cat-shaped ring in polished silver.",
+    longDescription: `A whimsical ring featuring a stylized cat silhouette crafted from polished 925 silver,
 perfect for cat lovers and those who enjoy fun, unique jewelry pieces.`,
-images: [img9, img9b, img9c]
-},
-{
-id: 10,
-name: "Black & White Butterfly",
-cost: 1530,
-shortDescription: "Elegant butterfly ring with black and white accent stones.",
-longDescription: `A sophisticated ring showcasing a butterfly design with contrasting black and white
+    images: [img9, img9b, img9c]
+  },
+  {
+    id: 10,
+    name: "Black & White Butterfly",
+    cost: 1530,
+    shortDescription: "Elegant butterfly ring with black and white accent stones.",
+    longDescription: `A sophisticated ring showcasing a butterfly design with contrasting black and white
 accent stones set in sterling silver, creating a striking and elegant piece.`,
-images: [img10, img10b]
-},
-{
-id: 11,
-name: "Simple Shape",
-cost: 400,
-shortDescription: "Minimalist geometric ring in sterling silver.",
-longDescription: `A sleek, minimalist ring featuring a geometric shape crafted from 925 sterling silver,
+    images: [img10, img10b]
+  },
+  {
+    id: 11,
+    name: "Simple Shape",
+    cost: 400,
+    shortDescription: "Minimalist geometric ring in sterling silver.",
+    longDescription: `A sleek, minimalist ring featuring a geometric shape crafted from 925 sterling silver,
 perfect for those who appreciate clean lines and modern design.`,
-images: [img11, img11b]
-},
-{
-id: 12,
-name: "Green Diamonds Stones Ring",
-cost: 890,
-shortDescription: "A ring with a deep green stone design.",
-longDescription: `A ring featuring diamonds-shaped stone motif crafted from sterling silver, combining
+    images: [img11, img11b]
+  },
+  {
+    id: 12,
+    name: "Green Diamonds Stones Ring",
+    cost: 890,
+    shortDescription: "A ring with a deep green stone design.",
+    longDescription: `A ring featuring diamonds-shaped stone motif crafted from sterling silver, combining
 organic beauty with elegant craftsmanship for a unique accessory.`,
-images: [img12, img12b, img12c]
-},
-{
-id: 13,
-name: "Four-Tier Connected Pavé Ring",
-cost: 1323,
-shortDescription: "Modern, dramatic, and effortlessly chic.,",
-longDescription: `A striking statement piece that beautifully balances contemporary edge with delicate luxury. This multi-layered ring features four individual bands, each meticulously encrusted with shimmering pavé-set stones that catch the light from every angle. Connected by fine, whisper-weight sterling silver chains, the tiers drape effortlessly along the length of the finger, creating a fluid, caged silhouette. It is a bold architectural design rendered with absolute grace and fineness.`,
-images: [img13, img13b, img13c, img13a]
-},
-{
-id: 14,
-name: "Filigree Butterfly Ring",
-cost: 980,
-shortDescription: "Whimsical, detailed and vintage-inspired",
-longDescription: `Inspired by the ethereal beauty of nature, this adjustable sterling silver ring showcases a beautifully detailed butterfly in full flight. The wings feature intricate openwork and precise textures, creating a lovely interplay of light and shadow. With its split-band design offering both comfort and versatile wear, this piece feels like a miniature wearable sculpture—delicate, timeless and full of whimsical charm.`,
-images: [img14, img14b]
-},
-{
-id: 15,
-name: "Interlocking Ring with Disc Charm",
-cost: "988",
-shortDescription: "Minimalist, playful and tactile",
-   longDescription: `Simple yet deeply captivating, this piece brings together two distinct textures in perfect harmony. One band is smoothly polished to a high mirror shine, while the other features a delicate, twisted rope texture. Interlocking forever, they hold a pristine, dangling circular disc charm that adds a subtle touch of movement. It is a masterclass in minimalist sophistication, designed to be worn every day as a gentle tactile reminder of elegance.`,
-images: [img15, img15b, img15c]
-},
-{
-id: 16,
-name: "Criss-Cross Minimalist Ring",
-cost: 645,
-shortDescription: "Avant-garde, clean and sleek.",
-longDescription: `Defined by its clean lines and fluid geometry, this structural ring boasts a mesmerizing
+    images: [img12, img12b, img12c]
+  },
+  {
+    id: 13,
+    name: "Four-Tier Connected Pavé Ring",
+    cost: 1323,
+    shortDescription: "Modern, dramatic, and effortlessly chic.,",
+    longDescription: `A striking statement piece that beautifully balances contemporary edge with delicate luxury. This multi-layered ring features four individual bands, each meticulously encrusted with shimmering pavé-set stones that catch the light from every angle. Connected by fine, whisper-weight sterling silver chains, the tiers drape effortlessly along the length of the finger, creating a fluid, caged silhouette. It is a bold architectural design rendered with absolute grace and fineness.`,
+    images: [img13, img13b, img13c, img13a]
+  },
+  {
+    id: 14,
+    name: "Filigree Butterfly Ring",
+    cost: 980,
+    shortDescription: "Whimsical, detailed and vintage-inspired",
+    longDescription: `Inspired by the ethereal beauty of nature, this adjustable sterling silver ring showcases a beautifully detailed butterfly in full flight. The wings feature intricate openwork and precise textures, creating a lovely interplay of light and shadow. With its split-band design offering both comfort and versatile wear, this piece feels like a miniature wearable sculpture—delicate, timeless and full of whimsical charm.`,
+    images: [img14, img14b]
+  },
+  {
+    id: 15,
+    name: "Interlocking Ring with Disc Charm",
+    cost: "988",
+    shortDescription: "Minimalist, playful and tactile",
+    longDescription: `Simple yet deeply captivating, this piece brings together two distinct textures in perfect harmony. One band is smoothly polished to a high mirror shine, while the other features a delicate, twisted rope texture. Interlocking forever, they hold a pristine, dangling circular disc charm that adds a subtle touch of movement. It is a masterclass in minimalist sophistication, designed to be worn every day as a gentle tactile reminder of elegance.`,
+    images: [img15, img15b, img15c]
+  },
+  {
+    id: 16,
+    name: "Criss-Cross Minimalist Ring",
+    cost: 645,
+    shortDescription: "Avant-garde, clean and sleek.",
+    longDescription: `Defined by its clean lines and fluid geometry, this structural ring boasts a mesmerizing
 criss-cross silhouette that wraps beautifully around the finger. Crafted with a flawless, high-polish
 finish, its open-front style gives it an airy, weightless quality. This piece is the epitome of
 understated luxury—perfect for anyone who appreciates the undeniable beauty of minimalist,
 modern art.`,
-images: [img16]
-},
-{
-id: 17,
-name: "Message in a Bottle Keepsake",
-cost: 1212,
-shortDescription: "Romantic, nostalgic and poetic.",
-  longDescription: `A tiny pocketful of poetry and wonder. Enclosed within a delicate glass vial sealed with a rustic cork stopper lies a collection of forgotten treasures: a trio of perfectly detailed miniature seashells, a rolled parchment scroll bound by a silver ring, and a suspended vintage-style key with the word "LOVE" sculpted into its bit. It is an enchanting, sentimental piece that captures a sense of coastal romance and hidden mysteries.`,
-images: [img17, img17b] 
-}];
+    images: [img16]
+  },
+  {
+    id: 17,
+    name: "Message in a Bottle Keepsake",
+    cost: 1212,
+    shortDescription: "Romantic, nostalgic and poetic.",
+    longDescription: `A tiny pocketful of poetry and wonder. Enclosed within a delicate glass vial sealed with a rustic cork stopper lies a collection of forgotten treasures: a trio of perfectly detailed miniature seashells, a rolled parchment scroll bound by a silver ring, and a suspended vintage-style key with the word "LOVE" sculpted into its bit. It is an enchanting, sentimental piece that captures a sense of coastal romance and hidden mysteries.`,
+    images: [img17, img17b]
+  }];
