@@ -34,4 +34,5 @@ h3,
 h4 {
   color: var(--text-h);
   font-weight: 500;
+  line-height: 1.2;
 }
