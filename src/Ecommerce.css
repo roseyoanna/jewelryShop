@@ -76,7 +76,7 @@ body {
   .cart-popup {
     top: 30px;
     left: 90px;
-    position:fixed;
+    position: fixed;
     bottom: auto;
     transform: none;
     font-size: 16px;
@@ -153,7 +153,11 @@ body {
   border-bottom: 1px solid var(--mov-light-btn);
   margin-bottom: 40px;
   gap: 12px;
-  
+  position: sticky;
+  top: 1px;
+  z-index: 100;
+  background: var(--mov-background);
+
 }
 
 .nav-menu-left {
